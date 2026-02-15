@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "kamal_easy"
+require "kamal_easy/cli"
+
+KamalEasy::CLI.start(ARGV)
