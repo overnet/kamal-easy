@@ -75,6 +75,7 @@ Deploy specific components or the entire stack.
 - `--backend`: Deploy only backend
 - `--frontend`: Deploy only frontend
 - `--db`: Restart database accessory
+- `--prune` / `-p`: Prune Docker system (images/containers) before deploy
 
 ```bash
 # Deploy EVERYTHING (Backend + Frontend + DB)

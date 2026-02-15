@@ -53,10 +53,13 @@ module KamalEasy
     method_option :backend, type: :boolean, desc: "Deploy backend"
     method_option :frontend, type: :boolean, desc: "Deploy frontend"
     method_option :db, type: :boolean, desc: "Restart database"
+    method_option :prune, aliases: "-p", type: :boolean, desc: "Prune Docker before deploy"
     def deploy
       config = KamalEasy::Config.load
       env_key, env_vars = load_environment(config)
       
+      prune_docker(config, env_vars) if options[:prune]
+
       if options[:all]
         deploy_backend(config, env_vars)
         deploy_frontend(config, env_vars)
