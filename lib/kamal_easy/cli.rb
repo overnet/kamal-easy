@@ -113,6 +113,26 @@ module KamalEasy
       exec_in_dir(backend_config["path"], env_vars, cmd)
     end
 
+    desc "prune", "Prune old images and containers"
+    method_option :retain, aliases: "-r", type: :numeric, default: 3, desc: "Number of versions to keep"
+    method_option :hard, type: :boolean, default: false, desc: "Run aggressive docker system prune"
+    def prune
+      config = KamalEasy::Config.load
+      env_key, env_vars = load_environment(config)
+      backend_config = config.components["backend"]
+
+      puts "🧹 Pruning old versions (keeping last #{options[:retain]})..."
+      
+      # Kamal native prune (removes old containers/images managed by Kamal)
+      cmd = "#{backend_config['kamal_cmd']} prune --retain #{options[:retain]}"
+      exec_in_dir(backend_config["path"], env_vars, cmd)
+
+      if options[:hard]
+        puts "🧹 Running hard Docker cleanup..."
+        exec_in_dir(backend_config["path"], env_vars, "#{backend_config['kamal_cmd']} server exec 'docker system prune -a -f --volumes'")
+      end
+    end
+
     private
 
     def load_environment(config)

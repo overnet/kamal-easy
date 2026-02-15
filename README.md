@@ -120,6 +120,21 @@ bundle exec kamal-easy c --uat
 bundle exec kamal-easy rails_console --prod
 ```
 
+### 4. Cleanup (`kamal-easy prune`)
+Manage disk usage by removing old versions.
+
+```bash
+# Keep last 3 versions (Default)
+bundle exec kamal-easy prune --uat
+
+# Keep last 5 versions
+bundle exec kamal-easy prune --uat --retain 5
+
+# Hard Cleanup (Aggressive docker system prune)
+# WARNING: Deletes all stopped containers and unused images
+bundle exec kamal-easy prune --uat --hard
+```
+
 ## 🏗️ Deployment Architecture (Reference)
 This gem assumes a setup where:
 1.  **Backend & Frontend** are in sibling directories.
