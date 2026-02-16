@@ -8,9 +8,7 @@ Simplifies multi-environment deployments (UAT/Production) and provides unified c
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'kamal-easy', git: 'https://github.com/overnet/kamal-easy.git'
-# OR locally during development:
-# gem 'kamal-easy', path: '../gems/kamal-easy'
+gem 'kamal-easy'
 ```
 
 And then execute:
