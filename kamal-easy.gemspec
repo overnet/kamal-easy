@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "thor", "~> 1.2"
   # Relaxed dependency to avoid conflicts with Rails apps running dotenv 3.x
-  spec.add_dependency "dotenv", ">= 2.8" 
+  spec.add_dependency "dotenv", ">= 2.8", "< 4.0"
 end
